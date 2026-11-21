@@ -173,9 +173,11 @@ def _find_env_file() -> str:
     env_path = project_root / ".env"
     if not env_path.exists():
         # Create from example if available
-        example = project_root / ".env.example"
-        if example.exists():
-            env_path.write_text(example.read_text(encoding="utf-8"), encoding="utf-8")
+        for candidate in ("env.example", ".env.example"):
+            example = project_root / candidate
+            if example.exists():
+                env_path.write_text(example.read_text(encoding="utf-8"), encoding="utf-8")
+                break
         else:
             env_path.write_text("", encoding="utf-8")
     return str(env_path)

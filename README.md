@@ -85,7 +85,7 @@ flowchart TD
 - **پردازش متن و انبدینگ**: `SentenceTransformers` (`BAAI/bge-small-en-v1.5`)
 - **بازرتبه‌بندی**: `CrossEncoder` (`cross-encoder/ms-marco-MiniLM-L-6-v2`)
 - **جستجوی متنی**: `rank-bm25` (BM25Okapi)
-- **پردازش اسناد**: `PyPDF2`
+- **پردازش اسناد**: `pypdf`
 - **تنظیمات و متغیرها**: `pydantic-settings`
 - **ارتباطات HTTP**: `requests`
 
@@ -111,9 +111,9 @@ pip install -r requirements.txt
 ```
 
 ### ۳. تنظیم متغیرهای محیطی (`.env`)
-فایل `.env.example` را به `.env` کپی کنید:
+فایل `env.example` را به `.env` کپی کنید:
 ```bash
-cp ../.env.example ../.env
+cp ../env.example ../.env
 ```
 محتوای فایل `.env` را بر اساس نیاز خود تنظیم کنید (همچنین می‌توانید تنظیمات را مستقیماً در داشبورد وب انجام دهید):
 ```env

@@ -1,5 +1,8 @@
 import os
+from pathlib import Path
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
+_PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent.parent
 
 class Settings(BaseSettings):
     PROJECT_NAME: str = "RAG Nexus Engine"
@@ -36,6 +39,10 @@ class Settings(BaseSettings):
     EMBEDDING_MODEL_NAME: str = "BAAI/bge-small-en-v1.5"
     RERANKER_MODEL_NAME: str = "cross-encoder/ms-marco-MiniLM-L-6-v2"
     
-    model_config = SettingsConfigDict(env_file=".env", env_file_encoding="utf-8", extra="ignore")
+    model_config = SettingsConfigDict(
+        env_file=(str(_PROJECT_ROOT / ".env"), ".env"),
+        env_file_encoding="utf-8",
+        extra="ignore",
+    )
 
 settings = Settings()
