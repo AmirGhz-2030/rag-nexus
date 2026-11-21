@@ -1,75 +1,79 @@
-# ⚡ RAG Nexus — موتور پیشرفته و ماژولار RAG (Advanced Modular RAG Engine)
+# ⚡ RAG Nexus — Advanced Modular RAG Engine
 
 [![Developer](https://img.shields.io/badge/Developer-AmirGhz--2030-7C3AED?style=for-the-badge&logo=github&logoColor=white)](https://github.com/AmirGhz-2030)
 [![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=FastAPI&logoColor=white)](https://fastapi.tiangolo.com/)
 [![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](LICENSE)
+[![README: English](https://img.shields.io/badge/README-English-brightgreen.svg?style=for-the-badge)](README.md)
+[![README: Persian](https://img.shields.io/badge/README-Persian-orange.svg?style=for-the-badge)](README.fa.md)
 
-**RAG Nexus** یک سیستم کاملاً پیشرفته، قدرتمند و ماژولار مبتنی بر معماری **RAG (Retrieval-Augmented Generation)** است که برای کاوش هوشمند، جستجوی دقیق ترکیبی، تحلیل اسناد و پاسخ‌دهی به زبان طبیعی توسعه یافته است.
+> 🌐 **Read this in other languages:** **English** | [فارسی (Persian)](README.fa.md)
 
-این پروژه توسط **[AmirGhz-2030](https://github.com/AmirGhz-2030)** پیاده‌سازی شده و از آخرین تکنولوژی‌های هوش مصنوعی شامل **جستجوی ترکیبی (Hybrid Search)**، **بازرتبه‌بندی با Cross-Encoder**، **پشتیبانی از پرووایدرهای محلی و ابری** و یک **داشبورد تعاملی تاریک با استایل Glassmorphism** بهره می‌برد.
+**RAG Nexus** is a modular, production-ready **Retrieval-Augmented Generation (RAG)** engine designed for intelligent document exploration, hybrid search, multi-file analysis, and grounded natural-language question answering.
 
----
-
-## 🌟 قابلیت‌های اصلی سیستم (Key Features)
-
-### 🔍 ۱. جستجوی ترکیبی پیشرفته (Hybrid Search Engine)
-- **Dense Vector Search**: استفاده از مدل برداری قدرتمند `BAAI/bge-small-en-v1.5` برای درک سمانتیک و مفهومی متن.
-- **Sparse Keyword Search**: استفاده از الگوریتم `BM25Okapi` برای تطبیق کلمات کلیدی و دقیق.
-- **تنظیم وزن هوشمند (Alpha Slider)**: وزن‌دهی قابل تنظیم بین جستجوی برداری و کلمات کلیدی با تشخیص خودکار نوع فایل (`PDF`, `Markdown`, `TXT`).
-
-### 🎯 ۲. بازرتبه‌بندی نتایج (Cross-Encoder Re-ranking)
-- استفاده از مدل تخصصی `cross-encoder/ms-marco-MiniLM-L-6-v2` برای ارزیابی دقیق ارتباط پرامپت و چانک‌های بازیابی‌شده.
-
-### 🤖 ۳. پشتیبانی از پرووایدرهای مختلف (Multi-LLM Provider Support)
-امکان انتخاب و سوئیچ زنده بین ۳ پرووایدر بدون نیاز به ریستارت سرور:
-1. 🔵 **Google AI Studio**: پشتیبانی از مدل‌های خانواده Gemini (`gemini-2.5-flash`, `gemini-2.5-pro`).
-2. 💻 **LM Studio (Local)**: اتصال به مدل‌های هوش مصنوعی اجراشده روی سیستم لوکال (`http://localhost:1234/v1`).
-3. ⚡ **9Router**: روتر هوشمند AI برای مدیریت و سوئیچ بین مدل‌ها (`http://localhost:20128/v1`).
-
-### ⚙️ ۴. تست زنده اتصال و تنظیمات API (Live API Settings & Test Connection)
-- پنل تنظیمات API در داشبورد با نمایش کلیدهای ماسک‌شده برای امنیت بالا.
-- دکمه **🔌 Test Connection** جهت تست زنده اتصال با نمایش تاخیر (Latency) و خطایابی خودکار.
-
-### 📚 ۵. مدیریت چند فایلی اسناد (Multi-File Ingestion & Index Management)
-- قابلیت بارگذاری همزمان چند فایل (`PDF`, `Markdown`, `TXT`).
-- نمایش لیست اسناد ایندکس‌شده در سایدبار به همراه تعداد چانک‌های هر فایل.
-- دکمه **🗑️ Clear Index** جهت پاک‌سازی کامل حافظه اسناد قبلی و بارگذاری فایل‌های جدید.
-
-### 💬 ۶. حافظه چت، ذخیره‌سازی، خروجی و پاک‌سازی (Chat History & Memory)
-- **حافظه چندمرحله‌ای مکالمه (Multi-turn Context)**: ارسال تاریخچه چت‌های قبلی برای مدل جهت حفظ روند مکالمه.
-- **ذخیره خودکار چت**: حفظ پیام‌ها در `localStorage` مرورگر.
-- **دکمه 💾 Export Chat**: دریافت خروجی کامل گفتگوها با فرمت Markdown (`.md`).
-- **دکمه 🗑️ Clear Chat**: پاک کردن کامل تاریخچه چت.
+Developed by **[AmirGhz-2030](https://github.com/AmirGhz-2030)**, it combines **Hybrid Search (Dense + BM25)**, **Cross-Encoder Re-ranking**, **Multi-LLM Provider Switching** (local & cloud), and a modern **Dark Glassmorphism Web Dashboard**.
 
 ---
 
-## 🏗️ معماری سیستم (System Architecture)
+## 🌟 Key Features
+
+### 🔍 1. Hybrid Search Engine
+- **Dense Vector Search:** Uses `BAAI/bge-small-en-v1.5` for semantic similarity retrieval.
+- **Sparse Keyword Search:** Uses `BM25Okapi` for exact lexical matching.
+- **Adaptive Hybrid Weighting (Alpha Slider):** Configurable weighting between dense vector and BM25 scores with automatic parameter presets per file type (`PDF`, `Markdown`, `TXT`).
+
+### 🎯 2. Cross-Encoder Re-ranking
+- Uses `cross-encoder/ms-marco-MiniLM-L-6-v2` to accurately score and re-rank retrieved chunks against the user's query.
+
+### 🤖 3. Multi-LLM Provider Support
+Switch seamlessly between three LLM backends directly from the UI without restarting the server:
+1. 🔵 **Google AI Studio:** Gemini model family (`gemini-2.5-flash`, `gemini-2.5-pro`).
+2. 💻 **LM Studio (Local):** Local OpenAI-compatible inference server (`http://localhost:1234/v1`).
+3. ⚡ **9Router:** Smart AI model router (`http://localhost:20128/v1`).
+
+### ⚙️ 4. Live API Settings & Connection Testing
+- Built-in API settings panel with masked API keys for security.
+- One-click **🔌 Test Connection** check reporting live response latency and diagnostics.
+
+### 📚 5. Multi-File Ingestion & Index Management
+- Drag-and-drop multi-file upload (`PDF`, `Markdown`, `TXT`).
+- Sidebar list of indexed documents with per-file chunk counts.
+- **🗑️ Clear Index** button to wipe memory and load fresh document sets.
+
+### 💬 6. Chat History, Persistence & Export
+- **Multi-turn Context Memory:** Sends recent conversation turns alongside retrieved context.
+- **Browser Persistence:** Automatically saves chat history to `localStorage`.
+- **💾 Export Chat:** Downloads the entire conversation as a Markdown (`.md`) file.
+- **🗑️ Clear Chat:** Resets the conversation window cleanly.
+
+---
+
+## 🏗️ System Architecture
 
 ```mermaid
 flowchart TD
-    subgraph Ingestion ["۱. پایپ‌لاین بارگذاری اسناد"]
-        Docs["📚 اسناد همزمان (PDF, MD, TXT)"] --> Extractor["استخراج متن و پاکسازی"]
-        Extractor --> Splitter["چانکینگ هوشمند (Recursive Splitting)"]
-        Splitter --> Embedder["تولید انبدینگ (BGE-Small-EN)"]
-        Embedder --> VectorStore[("حافظه برداری Vector Store")]
-        Splitter --> BM25Index[("نمایه متنی BM25 Index")]
+    subgraph Ingestion ["1. Document Ingestion Pipeline"]
+        Docs["📚 Multi-File Docs (PDF, MD, TXT)"] --> Extractor["Text Extraction & Cleaning"]
+        Extractor --> Splitter["Recursive Chunking"]
+        Splitter --> Embedder["Dense Embedding (BGE-Small-EN)"]
+        Embedder --> VectorStore[("In-Memory Vector Store")]
+        Splitter --> BM25Index[("Sparse BM25 Index")]
     end
 
-    subgraph Retrieval ["۲. جستجوی ترکیبی و بازرتبه‌بندی"]
-        UserQuery["❓ سوال کاربر + تاریخچه چت"] --> Hybrid["جستجوی ترکیبی (Vector + BM25)"]
+    subgraph Retrieval ["2. Hybrid Retrieval & Re-ranking"]
+        UserQuery["❓ User Query + Chat History"] --> Hybrid["Hybrid Search (Vector + BM25)"]
         VectorStore --> Hybrid
         BM25Index --> Hybrid
-        Hybrid --> Reranker["بازرتبه‌بندی با Cross-Encoder"]
+        Hybrid --> Reranker["Cross-Encoder Re-ranking"]
     end
 
-    subgraph Generation ["۳. تولید پاسخ توسط LLM"]
-        Reranker --> PromptEngine["ساخت پرامپت RAG + مکالمه"]
-        PromptEngine --> Router{"انتخاب پرووایدر فعال"}
+    subgraph Generation ["3. Grounded LLM Generation"]
+        Reranker --> PromptEngine["RAG Prompt + History Builder"]
+        PromptEngine --> Router{"Active Provider"}
         Router -->|Google AI| GeminiAPI["Google AI Studio"]
         Router -->|LM Studio| LocalLLM["LM Studio (Local)"]
         Router -->|9Router| NineRouter["9Router (AI Router)"]
-        GeminiAPI --> Response["⚡ پاسخ نهایی همراه با ارجاعات"]
+        GeminiAPI --> Response["⚡ Cited Final Answer"]
         LocalLLM --> Response
         NineRouter --> Response
     end
@@ -77,45 +81,45 @@ flowchart TD
 
 ---
 
-## 🛠️ تکنولوژی‌های استفاده‌شده (Tech Stack)
+## 🛠️ Tech Stack
 
-### بک‌اند (Backend)
-- **پایتون**: Python 3.11+
-- **فریم‌ورک وب**: [FastAPI](https://fastapi.tiangolo.com/) + [Uvicorn](https://www.uvicorn.org/)
-- **پردازش متن و انبدینگ**: `SentenceTransformers` (`BAAI/bge-small-en-v1.5`)
-- **بازرتبه‌بندی**: `CrossEncoder` (`cross-encoder/ms-marco-MiniLM-L-6-v2`)
-- **جستجوی متنی**: `rank-bm25` (BM25Okapi)
-- **پردازش اسناد**: `pypdf`
-- **تنظیمات و متغیرها**: `pydantic-settings`
-- **ارتباطات HTTP**: `requests`
+### Backend
+- **Python:** Python 3.11+
+- **Web Framework:** [FastAPI](https://fastapi.tiangolo.com/) + [Uvicorn](https://www.uvicorn.org/)
+- **Embeddings:** `SentenceTransformers` (`BAAI/bge-small-en-v1.5`)
+- **Re-ranking:** `CrossEncoder` (`cross-encoder/ms-marco-MiniLM-L-6-v2`)
+- **Sparse Retrieval:** `rank-bm25` (`BM25Okapi`)
+- **PDF Extraction:** `pypdf`
+- **Configuration:** `pydantic-settings`
+- **HTTP Client:** `requests`
 
-### فرانت‌اند (Frontend)
-- **HTML5 & CSS3**: Vanilla CSS با تم تاریک مدرن، افکت Glassmorphism و فونت Google Outfit.
-- **جاوااسکریپت**: JavaScript ES6+ مدرن، Fetch API، LocalStorage.
+### Frontend
+- **HTML5 & CSS3:** Vanilla CSS with dark Glassmorphism styling and Google Outfit typography.
+- **JavaScript:** Modern ES6+, Fetch API, and `localStorage`.
 
 ---
 
-## 🚀 راهنمای سریع نصب و اجرا (Quick Start)
+## 🚀 Quick Start
 
-### ۱. کلون کردن مخزن
+### 1. Clone the Repository
 ```bash
 git clone https://github.com/AmirGhz-2030/rag-nexus.git
 cd rag-nexus
 ```
 
-### ۲. نصب پیش‌نیازها
-وارد پوشه `backend` شده و پکیج‌ها را نصب کنید:
+### 2. Install Dependencies
+Navigate into the `backend` directory and install required packages:
 ```bash
 cd backend
 pip install -r requirements.txt
 ```
 
-### ۳. تنظیم متغیرهای محیطی (`.env`)
-فایل `env.example` را به `.env` کپی کنید:
+### 3. Configure Environment Variables (`.env`)
+Copy `env.example` to `.env` in the project root:
 ```bash
 cp ../env.example ../.env
 ```
-محتوای فایل `.env` را بر اساس نیاز خود تنظیم کنید (همچنین می‌توانید تنظیمات را مستقیماً در داشبورد وب انجام دهید):
+Edit `.env` according to your preferred provider (or configure it live from the web dashboard):
 ```env
 LLM_PROVIDER=google
 GOOGLE_API_KEY=your_google_api_key_here
@@ -129,64 +133,64 @@ NINEROUTER_API_KEY=your_9router_key
 NINEROUTER_MODEL=hermes_test
 ```
 
-### ۴. اجرای برنامه
-سرور FastAPI را اجرا کنید:
+### 4. Run the Application
+Start the FastAPI server:
 ```bash
 python app/main.py
 ```
 
-پس از اجرای موفق، داشبورد برنامه روی آدرس زیر در دسترس خواهد بود:
+Once running, open the dashboard in your browser:
 👉 **[http://localhost:8000](http://localhost:8000)**
 
 ---
 
-## 📖 راهنمای استفاده از برنامه (User Guide)
+## 📖 User Guide
 
-1. **تنظیم پرووایدر هوش مصنوعی**:
-   - در پنل **⚙️ API Settings** سایدبار، پرووایدر خود (Google AI Studio / LM Studio / 9Router) را انتخاب کنید.
-   - API Key یا آدرس و نام مدل را وارد کرده و **💾 Save** را بزنید.
-   - روی دکمه **🔌 Test** کلیک کنید تا صحت اتصال با پیام سبز تایید شود.
+1. **Configure LLM Provider:**
+   - Open the **⚙️ API Settings** section in the sidebar and choose your provider (Google AI Studio / LM Studio / 9Router).
+   - Enter your API key or server URL and model name, then click **💾 Save**.
+   - Click **🔌 Test** to verify connectivity and inspect latency.
 
-2. **بارگذاری اسناد (Document Ingestion)**:
-   - فایل‌های PDF، Markdown یا TXT خود را بکشید و در کادر **Document Ingestion** رها کنید (امکان انتخاب همزمان چند فایل وجود دارد).
-   - سیستم پارامترهای Top-K و Alpha را به‌صورت اتوماتیک تنظیم می‌کند.
-   - لیست اسناد بارگذاری‌شده در سایدبار نمایش داده می‌شود.
+2. **Ingest Documents:**
+   - Drag and drop one or more `PDF`, `Markdown`, or `TXT` files into **Document Ingestion**.
+   - Retrieval parameters (`Top-K` and `Alpha`) auto-adjust based on document type.
+   - Uploaded documents and chunk counts appear in the sidebar.
 
-3. **چت و پرسش از اسناد**:
-   - سوال خود را در کادر چت بنویسید.
-   - نتایج بازیابی‌شده به همراه امتیاز Rerank در پنل سمت راست نمایش داده می‌شوند و پاسخ تولیدشده توسط LLM در چت ارائه می‌شود.
+3. **Query & Chat:**
+   - Ask questions about your documents in the chat bar.
+   - Re-ranked context chunks and scores appear in the right inspector panel alongside the generated answer.
 
-4. **مدیریت تاریخچه و اسناد**:
-   - جهت پاک‌سازی اسناد قبلی از دکمه **🗑️ Clear Index** استفاده کنید.
-   - جهت دانلود خروجی چت با فرمت Markdown از **💾 Export Chat** استفاده کنید.
-   - جهت پاک کردن چت از دکمه **🗑️ Clear Chat** استفاده کنید.
+4. **Manage History & Index:**
+   - Click **🗑️ Clear Index** to reset indexed documents.
+   - Click **💾 Export Chat** to save your conversation as Markdown.
+   - Click **🗑️ Clear Chat** to clear the chat thread.
 
 ---
 
-## 📡 مستندات API (REST API Reference)
+## 📡 REST API Reference
 
-| روش (Method) | مسیر (Endpoint) | توضیحات |
+| Method | Endpoint | Description |
 | :--- | :--- | :--- |
-| `GET` | `/api/v1/health` | بررسی وضعیت سرور، تعداد چانک‌ها و سرویس LLM فعال |
-| `GET` | `/api/v1/documents` | دریافت لیست اسناد ایندکس‌شده به همراه تعداد چانک‌ها |
-| `POST` | `/api/v1/ingest` | آپلود و ایندکس یک یا چند سند همزمان (PDF, TXT, MD) |
-| `POST` | `/api/v1/clear-index` | پاک‌سازی کامل اسناد ایندکس‌شده از حافظه |
-| `POST` | `/api/v1/query` | اجرای جستجوی ترکیبی، Reranking و تولید پاسخ با تاریخچه |
-| `GET` | `/api/v1/settings` | دریافت تنظیمات فعلی (کلیدها به‌صورت ماسک‌شده) |
-| `POST` | `/api/v1/settings` | ذخیره و آپدیت زنده تنظیمات پرووایدر در فایل `.env` |
-| `POST` | `/api/v1/test-connection` | تست زنده اتصال به پرووایدر هوش مصنوعی انتخابی |
+| `GET` | `/api/v1/health` | Check server status, indexed chunk count, and active LLM provider |
+| `GET` | `/api/v1/documents` | List indexed documents and per-file chunk counts |
+| `POST` | `/api/v1/ingest` | Upload and index one or multiple documents (`PDF`, `TXT`, `MD`) |
+| `POST` | `/api/v1/clear-index` | Clear all indexed documents from memory |
+| `POST` | `/api/v1/query` | Execute hybrid search, cross-encoder re-ranking, and LLM generation |
+| `GET` | `/api/v1/settings` | Retrieve current LLM settings (with masked API keys) |
+| `POST` | `/api/v1/settings` | Update provider settings live and persist them to `.env` |
+| `POST` | `/api/v1/test-connection` | Test live connectivity to the active LLM provider |
 
 ---
 
-## 👨‍💻 توسعه‌دهنده (Developer)
+## 👨‍💻 Developer
 
-این پروژه توسط **[AmirGhz-2030](https://github.com/AmirGhz-2030)** طراحی و پیاده‌سازی شده است.
+Designed and implemented by **[AmirGhz-2030](https://github.com/AmirGhz-2030)**.
 
-- **گیت‌هاب**: [https://github.com/AmirGhz-2030](https://github.com/AmirGhz-2030)
-- **پروژه**: RAG Nexus Engine
+- **GitHub:** [https://github.com/AmirGhz-2030](https://github.com/AmirGhz-2030)
+- **Project:** RAG Nexus Engine
 
 ---
 
-## 📜 مجوز (License)
+## 📜 License
 
-این پروژه تحت مجوز **MIT** منتشر شده است. استفاده، تغییر و توسعه آن آزاد است.
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
