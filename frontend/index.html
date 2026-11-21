@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG Nexus - Modular RAG Engine</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="logo-icon">⚡</div>
+                <div class="brand-text">
+                    <h2>RAG Nexus</h2>
+                    <span class="badge">v1.0 Advanced</span>
+                </div>
+            </div>
+
+            <!-- Developer Credit Badge -->
+            <a href="https://github.com/AmirGhz-2030" target="_blank" rel="noopener noreferrer" class="dev-badge" title="Visit Developer GitHub">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                <span>By AmirGhz-2030</span>
+            </a>
+
+            <!-- Upload Box -->
+            <div class="section upload-section">
+                <h3>Document Ingestion</h3>
+                <div class="drop-zone" id="dropZone">
+                    <div class="upload-icon">📁</div>
+                    <p>Drag & Drop files here or <label for="fileInput">Browse</label></p>
+                    <input type="file" id="fileInput" accept=".pdf,.txt,.md" hidden multiple>
+                    <span class="file-hint">Supports Multiple PDF, TXT, Markdown files</span>
+                </div>
+                <div id="uploadStatus" class="status-msg"></div>
+
+                <!-- Indexed Files List & Clear Index Button -->
+                <div id="indexedFilesSection" class="indexed-files-section" style="display:none">
+                    <div class="indexed-files-header">
+                        <span>📚 Indexed Files</span>
+                        <button id="clearIndexBtn" class="clear-index-btn" title="Clear all uploaded documents">🗑️ Clear Index</button>
+                    </div>
+                    <ul id="indexedFilesList" class="indexed-files-list"></ul>
+                </div>
+            </div>
+
+            <!-- RAG Controls -->
+            <div class="section controls-section">
+                <h3>Retrieval Controls <span class="auto-badge" id="autoBadge">🤖 Auto</span></h3>
+                
+                <div class="control-group">
+                    <label for="topK">Top-K Chunks: <span id="topKVal">4</span></label>
+                    <input type="range" id="topK" min="1" max="10" value="4">
+                </div>
+
+                <div class="control-group">
+                    <label for="alphaSlider">Hybrid Weight (Alpha): <span id="alphaVal">0.5</span></label>
+                    <div class="slider-labels">
+                        <span>BM25</span>
+                        <span>Dense Vector</span>
+                    </div>
+                    <input type="range" id="alphaSlider" min="0" max="1" step="0.1" value="0.5">
+                </div>
+            </div>
+
+            <!-- API Settings -->
+            <div class="section settings-section">
+                <h3>⚙️ API Settings</h3>
+                <div class="control-group">
+                    <label for="providerSelect">LLM Provider</label>
+                    <select id="providerSelect" class="settings-select">
+                        <option value="google">🔵 Google AI Studio</option>
+                        <option value="lmstudio">💻 LM Studio (Local)</option>
+                        <option value="9router">⚡ 9Router</option>
+                    </select>
+                </div>
+
+                <!-- Google AI Studio Fields -->
+                <div class="control-group api-field" id="googleField">
+                    <label for="googleKeyInput">Google API Key</label>
+                    <div class="key-input-wrap">
+                        <input type="password" id="googleKeyInput" placeholder="AIza..." autocomplete="off">
+                        <button class="toggle-eye" data-target="googleKeyInput" title="Show/Hide">👁</button>
+                    </div>
+                    <label for="googleModelInput" style="margin-top:8px">Model</label>
+                    <input type="text" id="googleModelInput" class="settings-input" placeholder="gemini-2.5-flash" autocomplete="off">
+                </div>
+
+                <!-- LM Studio Fields -->
+                <div class="control-group api-field" id="lmstudioField" style="display:none">
+                    <label for="lmstudioUrlInput">Server URL</label>
+                    <input type="text" id="lmstudioUrlInput" class="settings-input" placeholder="http://localhost:1234/v1" autocomplete="off">
+                    <label for="lmstudioModelInput" style="margin-top:8px">Model</label>
+                    <input type="text" id="lmstudioModelInput" class="settings-input" placeholder="default" autocomplete="off">
+                    <span class="file-hint">Make sure LM Studio server is running</span>
+                </div>
+
+                <!-- 9Router Fields -->
+                <div class="control-group api-field" id="ninerouterField" style="display:none">
+                    <label for="ninerouterUrlInput">9Router URL</label>
+                    <input type="text" id="ninerouterUrlInput" class="settings-input" placeholder="http://localhost:20128/v1" autocomplete="off">
+                    <label for="ninerouterKeyInput" style="margin-top:8px">API Key</label>
+                    <div class="key-input-wrap">
+                        <input type="password" id="ninerouterKeyInput" placeholder="Copy from 9Router dashboard" autocomplete="off">
+                        <button class="toggle-eye" data-target="ninerouterKeyInput" title="Show/Hide">👁</button>
+                    </div>
+                    <label for="ninerouterModelInput" style="margin-top:8px">Model</label>
+                    <input type="text" id="ninerouterModelInput" class="settings-input" placeholder="kr/claude-sonnet-4.5" autocomplete="off">
+                    <span class="file-hint">Run: npm install -g 9router && 9router</span>
+                </div>
+
+                <div class="settings-btn-row">
+                    <button id="saveSettingsBtn" class="save-settings-btn">💾 Save</button>
+                    <button id="testConnectionBtn" class="test-connection-btn">🔌 Test</button>
+                </div>
+                <div id="settingsStatus" class="status-msg"></div>
+            </div>
+
+            <!-- System Stats -->
+            <div class="section stats-section">
+                <h3>Engine Status</h3>
+                <div class="stat-card">
+                    <span class="stat-title">Indexed Chunks</span>
+                    <span class="stat-value" id="chunksCount">0</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-title">LLM Provider</span>
+                    <span class="stat-value" id="providerName">Gemini / OpenAI</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Workspace -->
+        <main class="main-workspace">
+            <header class="top-header">
+                <div class="header-title">
+                    <h1>Modular Research Assistant</h1>
+                    <p>Hybrid Vector + BM25 Search with Cross-Encoder Reranking</p>
+                </div>
+                <div class="header-right-actions">
+                    <a href="https://github.com/AmirGhz-2030" target="_blank" rel="noopener noreferrer" class="header-action-btn github-link-btn" title="Developer GitHub Profile">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle; margin-right:4px;"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                        GitHub
+                    </a>
+                    <button id="exportChatBtn" class="header-action-btn" title="Export conversation to Markdown">💾 Export Chat</button>
+                    <button id="clearChatBtn" class="header-action-btn danger" title="Clear chat history">🗑️ Clear Chat</button>
+                    <div class="latency-badge" id="latencyBadge">
+                        <span class="dot"></span> Ready
+                    </div>
+                </div>
+            </header>
+
+            <!-- Chat Output & Chunks View -->
+            <div class="content-grid">
+                <!-- Chat Window -->
+                <div class="chat-container">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="message system-msg">
+                            <div class="avatar">🤖</div>
+                            <div class="msg-content">
+                                Welcome to <strong>RAG Nexus</strong>! Upload single or multiple documents on the left panel, set your retrieval parameters, and ask any question.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chat-input-bar">
+                        <input type="text" id="queryInput" placeholder="Ask a question about your documents..." autocomplete="off">
+                        <button id="sendBtn">
+                            <span>Send</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Inspector / Citations Side Panel -->
+                <div class="inspector-container">
+                    <div class="inspector-header">
+                        <h3>Retrieved Context Chunks</h3>
+                        <span class="chunk-badge" id="retrievedCount">0 Chunks</span>
+                    </div>
+                    <div class="chunks-list" id="chunksList">
+                        <div class="empty-state">
+                            <p>Retrieved chunks with similarity and rerank scores will appear here after a query.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
